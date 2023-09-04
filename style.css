@@ -59,7 +59,8 @@ button {
 .clear, 
 .operator, 
 .dot,
-.equals {
+.equals,
+.backspace {
     width: 64px;
     height: 64px;
     border-radius: 2px;
@@ -96,9 +97,24 @@ button {
     justify-content: end;
 }
 
+.backspace {
+    background-color: rgb(185, 185, 185);
+    color: #ffffff;
+    font-size: 1rem;
+    height: 30px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    margin-right: 10px;
+}
+
+.backspace:hover {
+    background-color: rgb(210, 210, 210);
+}
+
 .clear {
     background-color: rgb(246, 49, 49);
     color: #fff;
+    font-size: 1rem;
     height: 30px;
     border-radius: 3px;
     transition: all 0.2s ease;
