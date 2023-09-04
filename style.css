@@ -66,12 +66,28 @@ button {
     background-color: #dedede;
     color: #000;
     font-family: monospace;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.digit:hover,
+.clear:hover,
+.operator:hover,
+.dot:hover {
+    background-color: #e8e8e8;
+    color: #fff;
+    transition: all 0.2s ease;
 }
 
 .operator {
     background-color: #ffb44b;
+    color: #000;
+    font-size: 1.2rem;
+}
+
+.operator:hover {
+    background-color: #ffb958;
     color: #fff;
-    font-size: 1.5rem;
 }
 
 .clear-container {
@@ -84,11 +100,22 @@ button {
     background-color: rgb(246, 49, 49);
     color: #fff;
     height: 30px;
-    border-radius: 5px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.clear:hover {
+    background-color: rgb(255, 62, 62);
 }
 
 .equals {
     background-color: rgb(0, 136, 239);
+    transition: all 0.2s ease;
+}
+
+.equals:hover {
+    background-color: rgb(36, 160, 255);
+    color: #fff;
 }
 
 .operators {
