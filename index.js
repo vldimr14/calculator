@@ -1,6 +1,7 @@
 const display = document.querySelector('.display');
 const digits = document.querySelectorAll('.digit'); 
 const clearBtn = document.querySelector('.clear');
+const backspaceBtn = document.querySelector('.backspace');
 const dotBtn = document.querySelector('.dot');
 const operators = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('.equals');
@@ -19,6 +20,12 @@ clearBtn.addEventListener('click', () => {
     secondNumber = 0;
     operator = '';
 });
+
+backspaceBtn.addEventListener('click', () => {
+    let arr = Array.from(display.textContent);
+    arr.pop();
+    display.textContent = arr.join('').toString();
+})
 
 digits.forEach((digit) => digit.addEventListener('click', (e) => {
     updateDisplay(e.target.textContent);
