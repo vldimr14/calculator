@@ -68,6 +68,12 @@ button {
     font-family: monospace;
 }
 
+.operator {
+    background-color: #ffb44b;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
 .clear-container {
     width: 320px;
     display: flex;
@@ -88,6 +94,7 @@ button {
 .operators {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .row {
