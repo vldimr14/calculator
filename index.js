@@ -14,6 +14,7 @@ let secondNumber = 0;
 let operator = '';
 let divisionByZeroMessage = 'You can\'t divide by 0!';
 
+// Buttons
 clearBtn.addEventListener('click', () => {
     clearDisplay();
     firstNumber = 0;
@@ -21,11 +22,7 @@ clearBtn.addEventListener('click', () => {
     operator = '';
 });
 
-backspaceBtn.addEventListener('click', () => {
-    let arr = Array.from(display.textContent);
-    arr.pop();
-    display.textContent = arr.join('').toString();
-})
+backspaceBtn.addEventListener('click', deleteLast);
 
 digits.forEach((digit) => digit.addEventListener('click', (e) => {
     updateDisplay(e.target.textContent);
@@ -35,7 +32,7 @@ dotBtn.addEventListener('click', (e) => {
     updateDisplay(e.target.textContent);
 });
 
-operators.forEach((oper) => oper.addEventListener('click', (e) => {
+operators.forEach((oper) => oper.addEventListener('click', () => {
     if (display.textContent !== '') {
         firstNumber = +display.textContent;
         operator = oper.textContent;
@@ -44,13 +41,37 @@ operators.forEach((oper) => oper.addEventListener('click', (e) => {
     }
 }));
 
-equalsBtn.addEventListener('click', () => {
-    if (display.textContent !== '') {
-        secondNumber = +display.textContent;
-        operate(firstNumber, secondNumber, operator);
+equalsBtn.addEventListener('click', evaluate);
+
+// Keyboard support
+const digitKeys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const dotKey = '.';
+const backspaceKey = 'Backspace';
+const equalsKey = '=';
+const operatorKeys = ['+', '-', '*', '/'];
+
+document.addEventListener('keydown', (e) => {
+    if (digitKeys.includes(Number.parseInt(e.key))) {
+        updateDisplay(e.key);
+    } else if (e.key === backspaceKey) {
+        deleteLast();
+    } else if (e.key === dotKey) {
+        updateDisplay(e.key);
+    } else if (operatorKeys.includes(e.key)) {
+        if (display.textContent !== '') {
+            firstNumber = +display.textContent;
+            operator = e.key;
+
+            clearDisplay();
+        }
+    } else if (e.key === equalsKey || e.key == 'Enter') {
+        evaluate();
     }
+
+    console.log(e.key);
 });
 
+// Display functions
 function clearDisplay() {
     displayValue = 0;
     display.textContent = '';
@@ -71,6 +92,20 @@ function updateDisplay(value) {
     display.textContent += displayValue;
 }
 
+function deleteLast() {
+    let arr = Array.from(display.textContent);
+    arr.pop();
+    display.textContent = arr.join('').toString();
+}
+
+function evaluate() {
+    if (display.textContent !== '') {
+        secondNumber = +display.textContent;
+        operate(firstNumber, secondNumber, operator);
+    }
+}
+
+// Math logic
 function operate(firstNumber, secondNumber, operator) {
     let result;
 
